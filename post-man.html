@@ -5,6 +5,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="style.css" />
+    <style>
+      .remove-field{
+        cursor: pointer; padding: 2px; background-color: rgb(239, 150, 150);
+        max-height: 25px; max-width: 25px; text-align: center;
+      }
+      #response{
+        min-width: 100%; min-height: 200px;
+      }
+    </style>
     <title>Hello, world!</title>
   </head>
   <body class="container">
@@ -18,38 +27,36 @@
       </div>
       <div class="mb-3">
             <label for="route" class="form-label">URL</label>
-            <input type="text" class="form-control" id="url" placeholder="URL">
+            <input type="url" class="form-control" id="url" placeholder="URL">
           </div>
          
          <div id="fields">
-        <div class="d-flex justify-content-start">
+        <div class="mx-1 my-3 d-lg-inline-flex d-flex justify-content-start border p-2 ">
             <div class="">
-              <label class="form-label">Field Name</label>
-              <input type="text" class="form-control field-name" placeholder="Field Name">
+              <label class="">Key-Name</label>
+              <input type="text" class="form-control name-field" placeholder="Key-Name">
               </div>
               <div class="mx-5">
-              <label class="form-label">Field Value</label>
-              <input type="text" class="form-control field-value" placeholder="Field value">
+              <label class="">Key-Value</label>
+              <input type="text" class="form-control value-field" placeholder="Key-Value">
             </div>
           </div>
         </div> 
           <div class="my-3">
-            <button id="get_field">Get field</button>
+            <button id="add_field" class="btn btn-primary">Get field</button>
           </div>
           <h4>Josn Body</h4>
           <div class="mb-3">
             <label for="formGroupExampleInput3" class="form-label">JSON Body</label>
-            <input type="text" id="json" class="form-control" id="formGroupExampleInput3" placeholder="Json Body">
+            <input type="text" id="jsonbody" class="form-control" id="formGroupExampleInput3" placeholder="Json Body">
           </div>
 
           <div class="mb-3">
-            <input type="submit" id="go" value="Post" class="btn btn-primary"/>
+            <input type="submit" id="go" value="SEND" class="btn btn-primary"/>
           </div>
-
-          <button id="test">test</button>
   
-    <div id="response">
-
+    <div>
+      <textarea id="response"></textarea>
     </div>
   </body>
   <script src="fun.js" ></script>
