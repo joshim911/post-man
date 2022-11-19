@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="style.css" />
+    <title>Hello, world!</title>
+  </head>
+  <body class="container">
+    <h1>Post-Man</h1>
+      <div class="mb-3">
+        <h3>Select Method Type</h3>
+        <select id="methodtype" class="form-select" aria-label="Default select example">
+          <option selected value="GET">GET</option>
+          <option  value="POST">POST</option>
+        </select>
+      </div>
+      <div class="mb-3">
+            <label for="route" class="form-label">URL</label>
+            <input type="text" class="form-control" id="url" placeholder="URL">
+          </div>
+         
+         <div id="fields">
+        <div class="d-flex justify-content-start">
+            <div class="">
+              <label class="form-label">Field Name</label>
+              <input type="text" class="form-control field-name" placeholder="Field Name">
+              </div>
+              <div class="mx-5">
+              <label class="form-label">Field Value</label>
+              <input type="text" class="form-control field-value" placeholder="Field value">
+            </div>
+          </div>
+        </div> 
+          <div class="my-3">
+            <button id="get_field">Get field</button>
+          </div>
+          <h4>Josn Body</h4>
+          <div class="mb-3">
+            <label for="formGroupExampleInput3" class="form-label">JSON Body</label>
+            <input type="text" id="json" class="form-control" id="formGroupExampleInput3" placeholder="Json Body">
+          </div>
+
+          <div class="mb-3">
+            <input type="submit" id="go" value="Post" class="btn btn-primary"/>
+          </div>
+
+          <button id="test">test</button>
+  
+    <div id="response">
+
+    </div>
+  </body>
+  <script src="fun.js" ></script>
+</html>
