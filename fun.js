@@ -3,11 +3,12 @@ class PostMan
 {
     constructor()
     {
+
         this.method = document.getElementById("methodtype");
         this.url = document.getElementById("url");
         this.addField = document.getElementById("add_field");
         this.go = document.getElementById("go");
-
+        this.loading = document.getElementById("loading");
         this.jsonbody = document.getElementById("jsonbody");
 
         this.responseMessage = document.getElementById("response");
@@ -17,47 +18,81 @@ class PostMan
         this.sectonId = 0;
 
         this.data_object={};
-        this.getMethodparam;
+        this.getMethodparam = '';
 
         this.go.onclick = () =>{
             this.makeRequest();
         };
 
-        // this.url.value = localStorage.getItem('url');
+        if( this.method.value == "GET"){
+            this.url.value = localStorage.getItem('geturl');
+        }
 
+        if( this.method.value == "POST"){
+            this.url.value = localStorage.getItem('posturl');
+        }
+
+        this.method.onchange = () => {
+            
+            if( this.method.value == "GET"){
+                this.url.value = localStorage.getItem('geturl');
+            }
+    
+            if( this.method.value == "POST"){
+                this.url.value = localStorage.getItem('posturl');
+            }
+        }; 
     }
 
     makeRequest(){
+
         this.responseMessage.value = ' ';
- 
+        
+        this.loading.style.display='inline-block';
         if (this.method.value == 'GET') {
-            if ( this.makeGetParam() != '' && this.url.value !== '' ) {
+            if ( this.makeGetParam() !== '' && this.url.value !== '' ) {
                 this.url.value +=  this.makeGetParam(); 
-            }
-            
-           
+            }   
         }
 
         const xhr = new XMLHttpRequest();
         xhr.open( this.method.value,  this.url.value, true );
+        
+        if(this.method.value == 'POST'){
+            xhr.setRequestHeader("Content-Type", " application/json");
+        }
+
 
         xhr.onreadystatechange = () => {
             if( xhr.readyState == 4 ){
+                this.loading.style.display='none';
                 this.responseMessage.value = xhr.responseText;
-                
+            }else{
+                console.log(xhr.responseText); 
             }
+
             console.log(xhr.responseText);
         }
 
         if (this.method.value == 'POST') {
-            xhr.send( JSON.stringify( this.jsonbody.value ) );
+            
+            /**
+             * "this.jsonbody.value" It's data type is string but it is row json
+             * we access it from htm input tag, that's why it says data type is 
+             * string but it is row json data, so no issue to work with server
+             */
+            xhr.send( this.jsonbody.value );
+
+            // save url to the localStorage as if it will work autometically.
+            localStorage.setItem('posturl',this.url.value);
+           
         }
 
         if ( this.method.value == "GET" ) {
-            
             xhr.send();
+            localStorage.setItem('geturl',this.url.value);
         }
-        // localStorage.setItem('url', this.url.value);
+
     }
 
     addItem(itemKey,value){
@@ -67,6 +102,7 @@ class PostMan
     getFieldItem(){
         let itemName = document.getElementsByClassName("name-field");
         let value = document.getElementsByClassName("value-field");
+
         for (let i = 0; i < itemName.length; i++) {
             this.addItem( itemName[i].value, value[i].value );
         }
@@ -86,8 +122,9 @@ class PostMan
                 }
                 
             }else{
+
                 if( itemName[i].value != '' && value[i].value != '' ){
-                    this.getMethodparam = '?'+ itemName[i].value+"=" + value[i].value ;
+                    this.getMethodparam = '?'+ itemName[i].value+"=" + value[i].value;
                 }
                 
             }

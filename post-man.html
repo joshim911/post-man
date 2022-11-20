@@ -29,7 +29,10 @@
             <label for="route" class="form-label">URL</label>
             <input type="url" class="form-control" id="url" placeholder="URL">
           </div>
-         
+         <div class="my-3">
+          <b>Form Method: </b><input type="radio" name="checkbox" />
+          <b>Row json body: </b><input type="radio" name="checkbox" />
+         </div>
          <div id="fields">
         <div class="mx-1 my-3 d-lg-inline-flex d-flex justify-content-start border p-2 ">
             <div class="">
@@ -45,14 +48,15 @@
           <div class="my-3">
             <button id="add_field" class="btn btn-primary">Get field</button>
           </div>
-          <h4>Josn Body</h4>
+          
           <div class="mb-3">
-            <label for="formGroupExampleInput3" class="form-label">JSON Body</label>
+            <label for="formGroupExampleInput3" class=""><b>Row json data:</b></label>
             <input type="text" id="jsonbody" class="form-control" id="formGroupExampleInput3" placeholder="Json Body">
           </div>
 
           <div class="mb-3">
             <input type="submit" id="go" value="SEND" class="btn btn-primary"/>
+            <b id="loading" style="display:none;">Loading...</b>
           </div>
   
     <div>
